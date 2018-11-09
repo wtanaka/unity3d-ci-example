@@ -94,13 +94,16 @@ You'll first need to run this locally. All you need is [docker](https://www.dock
     ```bash
     UNITY_VERSION=2018.2.3f1
     docker run -it --rm \
+    -e "HOSTUID=`id -u`" \
+    -e "HOSTGID=`id -g`" \
     -e "UNITY_USERNAME=username@example.com" \
     -e "UNITY_PASSWORD=example_password" \
     -e "TEST_PLATFORM=linux" \
-    -e "WORKDIR=/root/project" \
-    -v "$(pwd):/root/project" \
-    gableroux/unity3d:$UNITY_VERSION \
+    -e "WORKDIR=/work" \
+    -v "$(pwd):/work" \
+    wtanaka/unity3d:$UNITY_VERSION \
     bash
+
     ```
 3. In Unity docker container's bash, run once like this, it will try to activate
 
